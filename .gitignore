@@ -1,7 +1,7 @@
 _design/
 dist/
 node_modules/
-src/static/css/*.css
+src/css/*.css
 
 # Created by https://www.gitignore.io/api/linux,windows,sublimetext
 
