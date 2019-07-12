@@ -4,7 +4,7 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const clean = require('gulp-rm');
-const uglify = require('gulp-uglifyes');
+const uglify = require('gulp-terser');
 const minify = require('gulp-clean-css');
 const rsync = require('gulp-rsync');
 
@@ -19,7 +19,7 @@ gulp.task('sass',()=>{
   return gulp.src('./src/sass/**/*.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(autoprefixer({ browsers: ['last 4 versions'] }))
+    .pipe(autoprefixer())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./src/css'))
     .pipe(browserSync.stream())
@@ -51,7 +51,7 @@ gulp.task('js', () => {
 gulp.task('buildSass', () => {
   return gulp.src('./src/sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({ browsers: ['last 4 versions'] }))
+    .pipe(autoprefixer())
     .pipe(gulp.dest('./src/css'))
 });
 
