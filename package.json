@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hungryphilomath/porfolio.git"
+    "url": "git+https://github.com/hungryphilomath/portfolio.git"
   },
   "author": "Ahmed Abuelgasim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hungryphilomath/porfolio/issues"
+    "url": "https://github.com/hungryphilomath/portfolio/issues"
   },
-  "homepage": "https://github.com/hungryphilomath/porfolio#readme",
+  "homepage": "https://github.com/hungryphilomath/portfolio#readme",
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
