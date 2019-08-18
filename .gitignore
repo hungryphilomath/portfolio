@@ -76,4 +76,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/linux,windows,sublimetext
 .DS_Store
-styles.css
+src/css/styles.css

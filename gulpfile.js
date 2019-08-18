@@ -32,12 +32,6 @@ gulp.task('clean', () => {
 });
 
 gulp.task('copy', () => {
-  return gulp.src('./src/{**/*.html,img/**/*,**/*.php,assets/**/*}')
-    // copy them to dist/
-    .pipe(gulp.dest('./dist/'))
-});
-
-gulp.task('copy', () => {
   return gulp.src('./src/{**/*.{html,php},assets/**/*,img/**/*}')
     .pipe(gulp.dest('./dist/'))
 });
