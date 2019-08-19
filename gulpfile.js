@@ -36,7 +36,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('copy', () => {
-  return gulp.src('./src/{**/*.{html,php},assets/**/*,img/**/*}')
+  return gulp.src('./src/{**/*.{html,php},assets/**/*,img/**/*,CNAME}')
     .pipe(gulp.dest(`${distDir}/`))
 });
 
@@ -75,9 +75,11 @@ gulp.task('serveBuild', gulp.series('build', ()=>{
 }));
 
 gulp.task('deploy', gulp.series('build', (cb)=>{
-  exec(`git subtree push --prefix ${distDirName} origin ${deployBranch}`, (err, stdout, stderr)=>{
+  exec("git push origin `git subtree split --prefix " + distDirName + " master`:" + deployBranch + " --force", (err, stdout, stderr)=>{
     console.log(stdout);
     console.log(stderr);
     cb(err);
   });
 }));
+
+// git subtree push --prefix ${distDirName} origin ${deployBranch}
