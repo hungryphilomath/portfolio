@@ -6,9 +6,11 @@ const autoprefixer = require('gulp-autoprefixer');
 const clean = require('gulp-rm');
 const uglify = require('gulp-terser');
 const minify = require('gulp-clean-css');
-const rsync = require('gulp-rsync');
+const exec = require('child_process').exec;
 
-const distDir = '../ahmeda'
+const distDirName = 'dist';
+const distDir = `./${distDirName}`;
+const deployBranch = `gh-pages`;
 
 /////////////// Development Subtasks ///////////////
 gulp.task('serve',()=>{
@@ -65,29 +67,17 @@ gulp.task('build', gulp.series(
   gulp.parallel('copy', 'js', 'css')
 ));
 
-gulp.task('serveBuild', gulp.series('build',()=>{
+gulp.task('serveBuild', gulp.series('build', ()=>{
   browserSync.init({
     server: `${distDir}`,
     port: 3030
   });
 }));
 
-// gulp.task('deploy', gulp.series('build', () => {
-//   const fs = require('fs');
-//   const webhost = JSON.parse(fs.readFileSync('./webhost-config.json'));
-//   const webhostDir = '~/public_html/ahmeda/';
-//   const updateOnly = process.argv.indexOf('--all') === -1;
-//   return gulp.src(`${distDir}/`)
-//     .pipe(rsync({
-//       hostname: webhost.address,
-//       username: webhost.username,
-//       destination: webhostDir,
-//       port: webhost.port,
-//       clean: true,
-//       compress: true,
-//       recursive: true,
-//       root: 'dist',
-//       silent: false,
-//       update: updateOnly
-//     }))
-// }));
+gulp.task('deploy', gulp.series('build', (cb)=>{
+  exec(`git subtree push --prefix ${distDirName} origin ${deployBranch}`, (err, stdout, stderr)=>{
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+}));
