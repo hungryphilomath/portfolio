@@ -1,13 +1,13 @@
 $(document).ready(function(){
-	
+
 	///////ONLOAD CODE
 	/* Bootstrap scroll spy adds 'active' class to the <li> elements with a child <a>
 	containing href linking to the section or div currently in view */
 	$('#home').scrollspy({target:'nav',offset:200});
-	
-	
+
+
 	const today = new Date();
-	$('#experience-years').text(today.getFullYear() - 2015);
+	$('#experience-years').text(today.getFullYear() - 2016);
 
 	/* Bootstrap affix applies 'affix' class to #profilePhoto and .skillBars elements.
 	Affix class shrinks and moves #profilePhoto to the navbar, and increases the width of
